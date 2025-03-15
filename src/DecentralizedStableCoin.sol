@@ -29,30 +29,24 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 /**
  * @title DecentralizedStableCoin
  * @author George Gorzhiyev
- * Collateral: Exogenous (wETH * wBTC)
+ * Collateral: Exogenous (wETH & wBTC)
  * Minting: Algorithmic
  * Relative Stability: Pegged to USD
  *
  * This is the contract meant to be governed by DSCEngine. This contract is just the ERC20 implementation of our stablecoin system.
  *
  */
-
 contract DecentralizedStableCoin is ERC20Burnable, Ownable {
-    /********* ERRORS **************************/
+    /* --------------- ERRORS --------------- */
     error DecentralizedStableCoin__MustBeMoreThanZero();
     error DecentralizedStableCoin__BurnAmountExceedsBalance();
     error DecentralizedStableCoin__NotZeroAddress();
 
-    /********* CONSTRUCTOR *********************/
-    constructor(
-        address initialOwner
-    ) ERC20("DecentralizedStableCoin", "DSC") Ownable(initialOwner) {}
+    /* --------------- CONSTRUCTOR --------------- */
+    constructor() ERC20("DecentralizedStableCoin", "DSC") {}
 
-    /********* FUNCTIONS ***********************/
-    function mint(
-        address _to,
-        uint256 _amount
-    ) external onlyOwner returns (bool) {
+    /* --------------- FUNCTIONS --------------- */
+    function mint(address _to, uint256 _amount) external onlyOwner returns (bool) {
         if (_to == address(0)) {
             revert DecentralizedStableCoin__NotZeroAddress();
         }
