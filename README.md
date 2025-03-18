@@ -8,3 +8,9 @@
 3. Collateral: Exogenous (Crypto)
    1. wETH
    2. wBTC
+
+
+1. What are our invariant/properties?
+
+1. Proper oracle use
+2. Write more tests
